@@ -243,6 +243,35 @@
         if (startX - endX > 50) next.click();
         else if (endX - startX > 50) prev.click();
       });
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key.toLowerCase() === 'u') {
+        e.preventDefault();
+        return false;
+    }
+    if (e.ctrlKey && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') {
+        e.preventDefault();
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'j') {
+        e.preventDefault();
+        return false;
+    }
+    if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+    }
+});
+      
     </script>
   </body>
 </html>
